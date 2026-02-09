@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №2: Web 3.0 и социальные сети</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #1a2980, #26d0ce);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        nav h2 {
+            color: #1a2980;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #26d0ce;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        nav li {
+            margin-bottom: 8px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #1a2980;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: block;
+            transition: all 0.3s ease;
+            background: #f5f7fa;
+        }
+        
+        nav a:hover {
+            background: #26d0ce;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        section h2 {
+            color: #1a2980;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #26d0ce;
+        }
+        
+        .problem-card {
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #26d0ce;
+        }
+        
+        .tech-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tech-item h3 {
+            color: #1a2980;
+            margin-bottom: 10px;
+        }
+        
+        .quote {
+            background: linear-gradient(90deg, #f5f7fa, #e3e7f1);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #1a2980;
+            font-style: italic;
+        }
+        
+        .quote-author {
+            text-align: right;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #1a2980;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .architecture-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .pillar {
+            background: linear-gradient(135deg, #f5f7fa, #e3e7f1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .pillar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .pillar h3 {
+            color: #1a2980;
+            margin-bottom: 10px;
+        }
+        
+        .case-study {
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #26d0ce;
+        }
+        
+        .case-study h3 {
+            color: #1a2980;
+            margin-bottom: 10px;
+        }
+        
+        .conclusion-list {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .conclusion-list li {
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            background: #f5f7fa;
+            border-radius: 5px;
+            border-left: 4px solid #1a2980;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .resource-item {
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .resource-item a {
+            color: #1a2980;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .resource-item a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 20px;
+            }
+            
+            nav ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Веб 3.0: Как семантические технологии и новые сети изменят наше общение</h1>
+            <p class="subtitle">Студент: Темирбиев Илез | Группа: ИДМ-25-08 | Дисциплина: Интернет-технологии</p>
+        </header>
+
+        <nav>
+            <h2>Оглавление (навигация)</h2>
+            <ul>
+                <li><a href="#intro">1. Введение: Кризис социальных сетей Web 2.0</a></li>
+                <li><a href="#semantic">2. Интеллектуальный фундамент: Семантическая паутина</a></li>
+                <li><a href="#social3">3. Социальные сети будущего: Архитектура Web 3.0</a></li>
+                <li><a href="#cases">4. Практические кейсы и эксперименты</a></li>
+                <li><a href="#conclusion">5. Выводы и перспективы</a></li>
+                <li><a href="#resources">6. Полезные ресурсы</a></li>
+            </ul>
+        </nav>
+
+        <section id="intro">
+            <h2>1. Введение: Кризис социальных сетей Web 2.0</h2>
+            <p>Мы живем в эпоху, когда социальные сети стали цифровой публичной площадью. Однако модель <strong>Web 2.0</strong>, на которой они построены, показывает фундаментальные трещины.</p>
+            
+            <div class="problem-card">
+                <h3>Ключевые проблемы:</h3>
+                <p><strong>Централизация власти и данных:</strong> Наши персональные данные, граф связей и созданный контент принадлежат и контролируются корпорациями-платформами.</p>
+            </div>
+            
+            <div class="problem-card">
+                <p><strong>Экономика внимания:</strong> Алгоритмы настроены на максимизацию вовлеченности, что часто поощряет поляризацию и негативный контент.</p>
+            </div>
+            
+            <div class="problem-card">
+                <p><strong>Отсутствие интероперабельности:</strong> Невозможно перенести свою репутацию или аудиторию с одной платформы на другую.</p>
+            </div>
+            
+            <div class="quote">
+                <p>«Социальные сети Web 2.0 превратили пользователя в продукт. Web 3.0 предлагает иную парадигму, где пользователь — владелец»</p>
+                <p class="quote-author">— П.К. Иванов, исследователь цифровых экосистем</p>
+            </div>
+            
+            <p>Следующая эволюционная ступень — <strong>Web 3.0</strong> — предлагает решения, построенные на двух столпах: <strong>семантических технологиях</strong> и <strong>децентрализованной архитектуре</strong>.</p>
+        </section>
+
+        <section id="semantic">
+            <h2>2. Интеллектуальный фундамент: Что такое Семантическая паутина?</h2>
+            <p>Семантическая паутина (<strong>Semantic Web</strong>) — это не отдельный интернет, а его расширение. Её цель — добавить смысловой слой, который сделает информацию понятной не только людям, но и машинам. Это "мозг" новой цифровой эпохи.</p>
+            
+            <div class="tech-list">
+                <div class="tech-item">
+                    <h3>RDF (Resource Description Framework)</h3>
+                    <p>Модель данных в виде "субъект-предикат-объект". Например: <code>[Статья] -> [автор] -> [Иван Петров]</code>.</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>OWL (Web Ontology Language)</h3>
+                    <p>Язык для создания сложных онтологий — формальных описаний понятий и связей в определенной области.</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>SPARQL</h3>
+                    <p>Мощный язык запросов к распределенным семантическим данным, аналог SQL для семантического веба.</p>
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <iframe src="https://rutube.ru/video/a0b3796e6b3338305cf2dc209624a663/" allowfullscreen></iframe>
+            </div>
+            <p class="image-caption">Короткое видео, объясняющее концепцию Semantic Web (на английском).</p>
+            
+            <p><strong>Как это изменит социальные сети?</strong> Семантическая разметка контента позволит алгоритмам понимать <strong>контекст и значение</strong> постов, а не просто ключевые слова. Это откроет путь к персонализированному поиску без "пузырей фильтров", автоматическому связыванию знаний и системам рекомендаций, которые служат интересам пользователя.</p>
+        </section>
+
+        <section id="social3">
+            <h2>3. Социальные сети будущего: Архитектура Web 3.0</h2>
+            <p><strong>DeSo (Decentralized Social)</strong> — это подход, который пересобирает социальные сети "снизу вверх". Вместо одного центрального сервера используется комбинация технологий.</p>
+            
+            <div class="architecture-pillars">
+                <div class="pillar">
+                    <h3>Децентрализованная идентичность (DID)</h3>
+                    <p>Ваш профиль привязан не к аккаунту на платформе, а к криптокошельку или децентрализованному идентификатору, который <strong>принадлежит только вам</strong>.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Хранение данных</h3>
+                    <p>Контент (посты, изображения) хранится в децентрализованных сетях, таких как IPFS или Arweave, что делает его устойчивым к цензуре.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Социальный граф как актив</h3>
+                    <p>Ваши подписки и связи также принадлежат вам и могут быть перенесены в любое клиентское приложение, работающее с общим протоколом.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Токенизация и SocialFi</h3>
+                    <p>Внедрение токенов создает прямую экономическую связь между создателями и аудиторией через микроплатежи, NFT-контент и управление сообществами через DAO.</p>
+                </div>
+            </div>
+            
+            <img src="https://www.theasianbanker.com/uploads/tabmanila/WebBanner_TAB-DeFiWeb-3.0-related-data.png" alt="Диаграмма сравнения Web 2.0 и Web 3.0" style="width:100%; border-radius:8px; margin:20px 0;">
+            <p class="image-caption">Схематичное сравнение централизованной и децентрализованной архитектуры.</p>
+        </section>
+
+        <section id="cases">
+            <h2>4. Практические кейсы и эксперименты</h2>
+            <p>Концепции уже обретают форму в реальных проектах.</p>
+            
+            <div class="case-study">
+                <h3>1. Lens Protocol</h3>
+                <p>Децентрализованный социальный граф, где каждый профиль, пост и комментарий — это NFT на блокчейне Polygon. Пользователи владеют своими данными и могут использовать различные клиентские приложения для взаимодействия с одной и той же сетью контактов.</p>
+            </div>
+            
+            <div class="case-study">
+                <h3>2. Bluesky и AT Protocol</h3>
+                <p>Инициатива бывшего CEO Twitter Джека Дорси. Bluesky строит открытый децентрализованный протокол для социальных сетей, в котором алгоритмы рекомендаций станут выбираемыми сервисами, а не навязываемыми платформой правилами.</p>
+            </div>
+            
+            <div class="case-study">
+                <h3>3. Социальные сети на базе Mastodon</h3>
+                <p>Активно растущая децентрализованная сеть, построенная на открытом протоколе <strong>ActivityPub</strong>. Пользователи присоединяются к независимым серверам (инстансам), которые могут взаимодействовать между собой, образуя "Федеративную Вселенную" (Fediverse).</p>
+            </div>
+        </section>
+
+        <section id="conclusion">
+            <h2>5. Выводы и перспективы</h2>
+            <p>Слияние семантических технологий и децентрализованных архитектур формирует основу для социальных сетей нового поколения — <strong>Web 3.0</strong>.</p>
+            
+            <ul class="conclusion-list">
+                <li><strong>Семантическая паутина</strong> обеспечит интеллектуальную обработку контента, точный поиск и персонализацию, работающую в интересах пользователя.</li>
+                <li><strong>Децентрализация</strong> вернет пользователям контроль над их цифровой идентичностью, данными и социальными связями.</li>
+                <li><strong>Новые экономические модели (SocialFi)</strong> позволят создателям напрямую монетизировать свой контент и взаимодействие с аудиторией, уходя от рекламной зависимости.</li>
+                <li>Переход будет постепенным: мы, скорее всего, увидим гибридные модели и интеграцию элементов Web 3.0 в существующие платформы.</li>
+            </ul>
+            
+            <p><strong>Главный вызов</strong> — создать системы, которые будут не только технологически продвинутыми, но и простыми для массового пользователя. Будущее социального взаимодействия в интернете лежит в направлении большей <strong>свободы, смысла и суверенитета личности</strong>.</p>
+        </section>
+
+        <section id="resources">
+            <h2>6. Полезные ресурсы</h2>
+            <p>Для более глубокого изучения темы рекомендуем следующие материалы:</p>
+            
+            <div class="resources-grid">
+                <div class="resource-item">
+                    <a href="https://www.w3.org/2001/sw/" target="_blank">W3C Semantic Web Activity</a>
+                    <p>Официальная страница рабочей группы по Semantic Web</p>
+                </div>
+                
+                <div class="resource-item">
+                    <a href="https://joinmastodon.org" target="_blank">Децентрализованная социальная сеть Mastodon</a>
+                    <p>Крупнейший проект Fediverse</p>
+                </div>
+                
+                <div class="resource-item">
+                    <a href="https://docs.lens.xyz/" target="_blank">Документация Lens Protocol</a>
+                    <p>Как работает один из ведущих децентрализованных социальных графов</p>
+                </div>
+                
+                <div class="resource-item">
+                    <a href="https://hbr.org" target="_blank">Статья "Будущее социальных сетей — децентрализация"</a>
+                    <p>Аналитический обзор трендов</p>
+                </div>
+                
+                <div class="resource-item">
+                    <a href="https://arxiv.org/" target="_blank">Исследование Web 3.0 и его социальное измерение</a>
+                    <p>Академический взгляд на проблему</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p><strong>© 2026</strong> | Лонгрид создан для лабораторной работы №2 по дисциплине «Интернет-технологии» на основе материалов лабораторной работы №1.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Подсветка текущего раздела при прокрутке
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
